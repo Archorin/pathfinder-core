@@ -1,0 +1,10 @@
+/home/orin/workspace/PathfinderCore/bin/Debug/netcoreapp2.0/PathfinderCore.deps.json
+/home/orin/workspace/PathfinderCore/bin/Debug/netcoreapp2.0/PathfinderCore.runtimeconfig.json
+/home/orin/workspace/PathfinderCore/bin/Debug/netcoreapp2.0/PathfinderCore.runtimeconfig.dev.json
+/home/orin/workspace/PathfinderCore/bin/Debug/netcoreapp2.0/PathfinderCore.dll
+/home/orin/workspace/PathfinderCore/bin/Debug/netcoreapp2.0/PathfinderCore.pdb
+/home/orin/workspace/PathfinderCore/obj/Debug/netcoreapp2.0/PathfinderCore.csproj.CoreCompileInputs.cache
+/home/orin/workspace/PathfinderCore/obj/Debug/netcoreapp2.0/PathfinderCore.AssemblyInfoInputs.cache
+/home/orin/workspace/PathfinderCore/obj/Debug/netcoreapp2.0/PathfinderCore.AssemblyInfo.cs
+/home/orin/workspace/PathfinderCore/obj/Debug/netcoreapp2.0/PathfinderCore.dll
+/home/orin/workspace/PathfinderCore/obj/Debug/netcoreapp2.0/PathfinderCore.pdb
