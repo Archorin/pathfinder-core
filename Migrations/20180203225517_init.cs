@@ -113,6 +113,21 @@ namespace PathfinderCore.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "utilisateur",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("MySQL:AutoIncrement", true),
+                    login = table.Column<string>(type: "varchar(50)", nullable: false),
+                    password_hash = table.Column<byte[]>(type: "Binary", maxLength: 16, nullable: false),
+                    password_salt = table.Column<byte[]>(type: "Binary", maxLength: 16, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_utilisateur", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "competence",
                 columns: table => new
                 {
@@ -336,6 +351,9 @@ namespace PathfinderCore.Migrations
 
             migrationBuilder.DropTable(
                 name: "statistique");
+
+            migrationBuilder.DropTable(
+                name: "utilisateur");
 
             migrationBuilder.DropTable(
                 name: "alignement");

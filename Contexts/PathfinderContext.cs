@@ -22,6 +22,7 @@ namespace PathfinderCore.Contexts
         public DbSet<ClasseAlignement> ClasseAlignement { get; set; }
         public DbSet<Race> Race { get; set; }
         public DbSet<Personnage> Personnage { get; set; }
+        public DbSet<Utilisateur> Utilisateur { get; set; }
 
  
         protected override void OnModelCreating(ModelBuilder modelBuilder)

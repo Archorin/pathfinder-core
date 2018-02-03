@@ -10,9 +10,10 @@ using System;
 namespace PathfinderCore.Migrations
 {
     [DbContext(typeof(PathfinderContext))]
-    partial class PathfinderContextModelSnapshot : ModelSnapshot
+    [Migration("20180203225517_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -333,13 +334,13 @@ namespace PathfinderCore.Migrations
                         .IsRequired()
                         .HasColumnName("password_hash")
                         .HasColumnType("Binary")
-                        .HasMaxLength(256);
+                        .HasMaxLength(16);
 
                     b.Property<byte[]>("PasswordSalt")
                         .IsRequired()
                         .HasColumnName("password_salt")
                         .HasColumnType("Binary")
-                        .HasMaxLength(256);
+                        .HasMaxLength(16);
 
                     b.HasKey("Id");
 

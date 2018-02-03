@@ -10,8 +10,8 @@ using System;
 namespace PathfinderCore.Migrations
 {
     [DbContext(typeof(PathfinderContext))]
-    [Migration("20180126113053_init")]
-    partial class init
+    [Migration("20180203231224_utilisateur")]
+    partial class utilisateur
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -316,6 +316,35 @@ namespace PathfinderCore.Migrations
                     b.HasIndex("CourbeId");
 
                     b.ToTable("statistique");
+                });
+
+            modelBuilder.Entity("PathfinderCore.Models.Utilisateur", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Login")
+                        .IsRequired()
+                        .HasColumnName("login")
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<byte[]>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnName("password_hash")
+                        .HasColumnType("Binary")
+                        .HasMaxLength(256);
+
+                    b.Property<byte[]>("PasswordSalt")
+                        .IsRequired()
+                        .HasColumnName("password_salt")
+                        .HasColumnType("Binary")
+                        .HasMaxLength(256);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("utilisateur");
                 });
 
             modelBuilder.Entity("PathfinderCore.Models.Classe", b =>

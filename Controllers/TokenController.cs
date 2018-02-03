@@ -6,10 +6,12 @@ using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Microsoft.AspNetCore.Cors;
 
 namespace PathfinderCore.Controllers
 {
   [Route("api/[controller]")]
+  [EnableCors(policyName: "AllowSpecificOrigin")]
   public class TokenController : Controller
   {
     private IConfiguration _config;
@@ -35,24 +37,43 @@ namespace PathfinderCore.Controllers
       return response;
     }
 
+    // private string BuildToken(UserModel user)
+    // {
+    //     var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
+    //     var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+    //     var token = new JwtSecurityToken(_config["Jwt:Issuer"],
+    //       _config["Jwt:Issuer"],
+    //       expires: DateTime.Now.AddMinutes(30),
+    //       signingCredentials: creds);
+
+    //     return new JwtSecurityTokenHandler().WriteToken(token);
+    //  }
     private string BuildToken(UserModel user)
     {
+
+        var claims = new[] {
+            new Claim(JwtRegisteredClaimNames.Sub, user.Name),
+            new Claim(JwtRegisteredClaimNames.Email, user.Email),
+            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+        };
+
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
         var token = new JwtSecurityToken(_config["Jwt:Issuer"],
           _config["Jwt:Issuer"],
+          claims,
           expires: DateTime.Now.AddMinutes(30),
           signingCredentials: creds);
 
         return new JwtSecurityTokenHandler().WriteToken(token);
-     }
-
+    }
      private UserModel Authenticate(LoginModel login)
      {
         UserModel user = null;
 
-        if (login.Username == "mario" && login.Password == "secret")
+        if (login.Login == "mario" && login.Password == "secret")
         {
             user = new UserModel { Name = "Mario Rossi", Email = "mario.rossi@domain.com"};
         }
@@ -61,7 +82,7 @@ namespace PathfinderCore.Controllers
 
     public class LoginModel
     {
-      public string Username { get; set; }
+      public string Login { get; set; }
       public string Password { get; set; }
     }
 
